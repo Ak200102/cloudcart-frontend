@@ -55,7 +55,7 @@ const SocialLinks = ({ className, iconStyle }) => {
           key={index}
           href={item?.href}
           className={twMerge(
-            "border border-white/20 inline-flex p-2 rounded-full hover:text-white hover:border-white duration-300 cursor-pointer",
+            "border border-white/20 inline-flex  p-2 rounded-full hover:text-white hover:border-white duration-300 cursor-pointer",
             iconStyle
           )}
         >

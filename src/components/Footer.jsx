@@ -41,8 +41,8 @@ const Footer = () => {
               trusted shopping destination for modern lifestyle essentials.
             </p>
             <SocialLinks
-              className="text-gray-400 hover:text-gray-900"
-              iconStyle="w-5 h-5 transition-colors duration-200"
+              className="text-gray-400  hover:text-gray-900"
+              iconStyle="w-25 h-25  transition-colors duration-200"
             />
           </div>
 
