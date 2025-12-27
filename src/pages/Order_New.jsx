@@ -6,6 +6,7 @@ import Container from "../components/Container";
 import PriceFormat from "../components/PriceFormat";
 import PremiumModal from "../components/PremiumModal";
 import { addToCart, setOrderCount } from "../redux/orebiSlice";
+import { serverUrl } from "../../config";
 import toast from "react-hot-toast";
 import {
   FaShoppingBag,
@@ -46,7 +47,7 @@ const Order = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:8000/api/order/my-orders`,
+        `${serverUrl}/api/order/my-orders`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

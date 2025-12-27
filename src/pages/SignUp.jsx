@@ -35,12 +35,12 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const role = "user"; // Fixed role as user, not editable
 
-  // ============= Error Messages =================
+  //  Error Messages 
   const [errClientName, setErrClientName] = useState("");
   const [errEmail, setErrEmail] = useState("");
   const [errPassword, setErrPassword] = useState("");
 
-  // ============= Event Handlers =============
+  // Event Handlers 
   const handleName = (e) => {
     setClientName(e.target.value);
     setErrClientName("");
@@ -56,7 +56,7 @@ const SignUp = () => {
     setErrPassword("");
   };
 
-  // ================= Email Validation =============
+  //  Email Validation 
   const EmailValidation = (email) => {
     return String(email)
       .toLowerCase()
