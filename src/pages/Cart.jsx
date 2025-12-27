@@ -12,6 +12,7 @@ import {
 import { emptyCart } from "../assets/images";
 import Container from "../components/Container";
 import PriceFormat from "../components/PriceFormat";
+import { serverUrl } from "../../config";
 import toast from "react-hot-toast";
 import {
   FaMinus,
@@ -78,7 +79,7 @@ const Cart = () => {
   const fetchAddresses = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:8000/api/user/addresses", {
+      const response = await fetch(`${serverUrl}/api/user/addresses`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

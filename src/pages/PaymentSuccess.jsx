@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import Container from "../components/Container";
 import PriceFormat from "../components/PriceFormat";
 import { motion } from "framer-motion";
+import { serverUrl } from "../../config";
 import {
   FaCheckCircle,
   FaShoppingBag,
@@ -37,7 +38,7 @@ const PaymentSuccess = () => {
 
         // Confirm payment with backend
         const confirmResponse = await fetch(
-          "http://localhost:8000/api/payment/stripe/confirm-payment",
+          `${serverUrl}/api/payment/stripe/confirm-payment`,
           {
             method: "POST",
             headers: {

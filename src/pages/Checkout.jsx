@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 import PriceFormat from "../components/PriceFormat";
 import StripePayment from "../components/StripePayment";
+import { serverUrl } from "../../config";
 import toast from "react-hot-toast";
 import {
   FaCheckCircle,
@@ -27,7 +28,7 @@ const Checkout = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:8000/api/order/user/${orderId}`,
+        `${serverUrl}/api/order/user/${orderId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
