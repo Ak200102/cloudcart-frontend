@@ -156,7 +156,7 @@ const Cart = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:8000/api/order/create", {
+      const response = await fetch(`${serverUrl}/api/order/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
