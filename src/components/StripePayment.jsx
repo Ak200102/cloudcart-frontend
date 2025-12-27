@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { loadStripe } from "@stripe/stripe-js";
+import { serverUrl } from "../../config";
 import {
   Elements,
   CardElement,
@@ -35,7 +36,7 @@ const CheckoutForm = ({ orderId, amount, onSuccess, onCancel }) => {
       // Create payment intent
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:8000/api/payment/stripe/create-payment-intent",
+        `${serverUrl}/api/payment/stripe/create-payment-intent`,
         {
           method: "POST",
           headers: {
