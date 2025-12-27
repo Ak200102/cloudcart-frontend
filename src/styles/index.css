@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* your custom styles AFTER Tailwind */
+@import "./base.css";
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
