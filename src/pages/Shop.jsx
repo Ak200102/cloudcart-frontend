@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Container from "../components/Container";
 import PaginationProductList from "../components/products/PaginationProductList";
-import { config } from "../../config";
+import { serverUrl } from "../../config";
 import { getData } from "../helpers";
 import ProductsSideNav from  "../components/products/ProductSideNav"
 
@@ -23,7 +23,7 @@ import ProductsSideNav from  "../components/products/ProductSideNav"
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  const endpoint = `${config?.baseUrl}/api/product/list`;
+  const endpoint = `${serverUrl}/api/product/list`;
 
   // Handle URL parameters for category filtering
   useEffect(() => {

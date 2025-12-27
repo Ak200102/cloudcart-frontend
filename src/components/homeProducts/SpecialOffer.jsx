@@ -5,7 +5,7 @@ import PreviousArrow from "../PreviousArrow";
 import Title from "../ui/title";
 import ProductCard from "../ProductCard";
 import { getData } from "../../helpers";
-import { config } from "../../../config";
+import { serverUrl } from "../../../config";
 
 const SpecialOffers = () => {
   const settings = {
@@ -45,7 +45,7 @@ const SpecialOffers = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   // const endpoint = "http://localhost:8000/products/?_type=offers";
-  const endpoint = `${config?.baseUrl}/api/product/list?offer=true`;
+  const endpoint = `${serverUrl}/api/product/list?offer=true`;
 
 
 

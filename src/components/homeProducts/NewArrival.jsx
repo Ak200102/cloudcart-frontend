@@ -5,7 +5,7 @@ import PreviousArrow from "../PreviousArrow";
 import Title from "../ui/title";
 import ProductCard from "../ProductCard";
 import { getData } from "../../helpers";
-import { config } from "../../../config";
+import { serverUrl } from "../../../config";
 
 const NewArrivals = () => {
   const settings = {
@@ -45,7 +45,7 @@ const NewArrivals = () => {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const endpoint = `${config?.baseUrl}/api/product/list?_type=new_arrivals`;
+  const endpoint = `${serverUrl}/api/product/list?_type=new_arrivals`;
 
   useEffect(() => {
     const getProducts = async () => {
