@@ -32,7 +32,7 @@ const bannerData = [
     title: "Household Chairs",
     subtitle: "The best deals on Chairs",
     description: "Professional-grade chairs for creatives and professionals",
-    discount: "$250 off",
+    discount: "₹250 off",
     from: 2349.99,
     sale: "Special Offer",
     image: slideTwo,
