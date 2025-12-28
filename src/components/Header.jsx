@@ -57,7 +57,7 @@ const Header = () => {
       {" "}
       <Container className="py-4 lg:py-6 flex items-center gap-x-3 md:gap-x-7 justify-between">
         <Link to={"/"} className="flex-shrink-0">
-          <img src={logo} alt="logo" className="h-15 w-auto" />
+          <img src={logo} alt="logo" className="h-auto md:h-15 w-auto" />
         </Link>
 
         <SearchInput />
