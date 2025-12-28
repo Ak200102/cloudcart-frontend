@@ -12,7 +12,7 @@ const BestSellers = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PreviousArrow />,
     responsive: [
@@ -20,7 +20,7 @@ const BestSellers = () => {
         breakpoint: 1025,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           infinite: true,
         },
       },

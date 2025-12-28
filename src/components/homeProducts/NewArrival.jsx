@@ -12,15 +12,15 @@ const NewArrivals = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PreviousArrow />,
     responsive: [
       {
         breakpoint: 1025,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
+          slidesToShow: 3,
+          slidesToScroll: 1,
           infinite: true,
         },
       },
