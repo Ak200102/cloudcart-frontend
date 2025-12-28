@@ -62,7 +62,7 @@ const SearchInput = () => {
   }, []);
 
   return (
-    <div ref={searchRef} className="flex-1 h-12 relative max-w-2xl">
+    <div ref={searchRef} className="relative w-full md:flex-1 h-12 md:max-w-2xl">
       {/* Input */}
       <div className="relative h-full">
         <CiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl" />
@@ -88,7 +88,7 @@ const SearchInput = () => {
 
       {/* Dropdown */}
       {isInputFocused && search && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 z-50 overflow-hidden">
+        <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95vw] md:w-fullmt-2 bg-white rounded-xl shadow-2xlborder border-gray-100 z-50 overflow-hidden">
           {isLoading ? (
             <div className="p-6 text-center text-gray-600">
               Searching…
@@ -100,7 +100,7 @@ const SearchInput = () => {
                 {filteredProducts.length > 1 ? "s" : ""} found
               </div>
 
-              <div className="max-h-80 overflow-y-auto">
+              <div className="max-h-[60vh] md:max-h-80 overflow-y-auto">
                 {filteredProducts.map((item) => (
                   <div
                     key={item._id}
