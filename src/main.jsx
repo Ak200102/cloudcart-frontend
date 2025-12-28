@@ -68,6 +68,10 @@ import FAQ from "./pages/FAQ.jsx";
 import Blog from "./pages/Blog.jsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { serverUrl } from "../config.js";
+
+//  Wake Render backend (cold-start fix)
+fetch(`${serverUrl}/health`).catch(() => {});
 
 
 const router = createBrowserRouter(
