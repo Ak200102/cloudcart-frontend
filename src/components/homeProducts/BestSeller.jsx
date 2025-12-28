@@ -110,7 +110,7 @@ const BestSellers = () => {
         </Slider>
       ) : (
         // Use simple grid when 3 or fewer products
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {products?.map((item) => (
             <ProductCard item={item} key={item?._id} />
           ))}
