@@ -1,4 +1,3 @@
-// export default SearchInput;
 import { useEffect, useRef, useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
@@ -16,7 +15,7 @@ const SearchInput = () => {
   const searchRef = useRef(null);
   const navigate = useNavigate();
 
-  //  Fetch products on search
+  /*  SEARCH API  */
   useEffect(() => {
     if (!search.trim()) {
       setFilteredProducts([]);
@@ -24,15 +23,6 @@ const SearchInput = () => {
     }
 
     const controller = new AbortController();
-// ScrollInput to view on focus
-    useEffect(() => {
-      if (isInputFocused && searchRef.current) {
-        searchRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      }
-    }, [isInputFocused]);
 
     const fetchProducts = async () => {
       try {
@@ -54,25 +44,37 @@ const SearchInput = () => {
     };
 
     fetchProducts();
-
     return () => controller.abort();
   }, [search]);
 
-  //  Close dropdown on outside click
+  /*  MOBILE SCROLL FIX  */
+  useEffect(() => {
+    if (isInputFocused && searchRef.current) {
+      searchRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [isInputFocused]);
+
+  /*  OUTSIDE CLICK  */
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (searchRef.current && !searchRef.current.contains(e.target)) {
         setIsInputFocused(false);
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     return () =>
       document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
-    <div ref={searchRef} className="relative w-full md:flex-1 h-12 md:max-w-2xl
-    z-[60]">
+    <div
+      ref={searchRef}
+      className="relative w-full md:flex-1 h-12 md:max-w-2xl z-[60]"
+    >
       {/* Input */}
       <div className="relative h-full">
         <CiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl" />
@@ -100,9 +102,7 @@ const SearchInput = () => {
       {isInputFocused && search && (
         <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95vw] md:w-full mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 z-[70] max-h-[60vh] overflow-y-auto">
           {isLoading ? (
-            <div className="p-6 text-center text-gray-600">
-              Searching…
-            </div>
+            <div className="p-6 text-center text-gray-600">Searching…</div>
           ) : filteredProducts.length > 0 ? (
             <>
               <div className="p-3 bg-gray-50 border-b text-sm text-gray-600 font-medium">
@@ -123,22 +123,14 @@ const SearchInput = () => {
                     }}
                     className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer border-b last:border-b-0"
                   >
-                    {/* Image */}
                     <div className="w-12 h-12 bg-gray-100 rounded-lg overflow-hidden">
-                      {item?.images?.[0] || item?.image ? (
-                        <img
-                          src={item?.images?.[0] || item?.image}
-                          alt={item?.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-gray-400">
-                          <CiSearch />
-                        </div>
-                      )}
+                      <img
+                        src={item?.images?.[0] || item?.image}
+                        alt={item?.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
 
-                    {/* Info */}
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-gray-900 truncate">
                         {item.name}
@@ -170,4 +162,3 @@ const SearchInput = () => {
 };
 
 export default SearchInput;
-
