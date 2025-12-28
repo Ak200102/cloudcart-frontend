@@ -55,20 +55,20 @@ const Header = () => {
   return (
     <div className="border-b border-gray-200 sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
       {" "}
-      <Container className="py-4 lg:py-6 flex items-center gap-x-3 md:gap-x-7 justify-between">
+      <Container className="py-3 md:py-6 flex items-center gap-2 md:gap-x-7">
         <Link to={"/"} className="flex-shrink-0">
-          <img src={logo} alt="logo" className="h-15 w-auto" />
+          <img src={logo} alt="logo" className="h-8 sm:h-10 md:h-12 w-auto" />
         </Link>
-
-        <SearchInput />
-
+        <div className="flex-1 mx-2 md:mx-0">
+          <SearchInput />
+        </div>
         <div className="hidden md:inline-flex items-center gap-4 lg:gap-x-6 text-sm uppercase font-medium text-gray-700">
           {headerNavigation.map((item) => (
             <NavLink
               key={item?.title}
               className={`hover:text-black duration-300 relative group overflow-hidden px-1 py-2 transition-colors ${location?.pathname === item?.link
-                  ? "text-black font-semibold"
-                  : "text-gray-700"
+                ? "text-black font-semibold"
+                : "text-gray-700"
                 }`}
               to={item?.link}
               state={{ data: location.pathname.split("/")[1] }}
@@ -83,8 +83,8 @@ const Header = () => {
               </div>
               <span
                 className={`absolute bottom-0 left-0 inline-block w-full h-0.5 bg-black group-hover:translate-x-0 duration-300 ease-out ${location?.pathname === item?.link
-                    ? "translate-x-0"
-                    : "-translate-x-full"
+                  ? "translate-x-0"
+                  : "-translate-x-full"
                   }`}
               />
             </NavLink>
@@ -169,16 +169,16 @@ const Header = () => {
                         onClick={() => setIsOpen(false)}
                         state={{ data: location.pathname.split("/")[1] }}
                         className={`block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-black transition-all duration-200 transform hover:translate-x-1 ${location?.pathname === item?.link
-                            ? "bg-gray-100 text-black font-semibold"
-                            : ""
+                          ? "bg-gray-100 text-black font-semibold"
+                          : ""
                           }`}
                       >
                         <div className="flex items-center gap-3 justify-between">
                           <div className="flex items-center gap-3">
                             <div
                               className={`w-2 h-2 rounded-full transition-colors duration-200 ${location?.pathname === item?.link
-                                  ? "bg-black"
-                                  : "bg-gray-300"
+                                ? "bg-black"
+                                : "bg-gray-300"
                                 }`}
                             />
                             {item?.title}
