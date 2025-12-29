@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Container from "./Container";
 import { Button } from "./ui/button";
 import { paymentCard } from "../assets/images";
@@ -12,7 +13,7 @@ const Footer = () => {
 
   const emailValidation = () => {
     return String(emailInfo)
-      .toLocaleLowerCase()
+      .toLowerCase()
       .match(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/);
   };
 
@@ -41,8 +42,8 @@ const Footer = () => {
               trusted shopping destination for modern lifestyle essentials.
             </p>
             <SocialLinks
-              className="text-gray-400  hover:text-gray-900"
-              iconStyle="w-25 h-25  transition-colors duration-200"
+              className="text-gray-400 hover:text-gray-900"
+              iconStyle="w-25 h-25 transition-colors duration-200"
             />
           </div>
 
@@ -53,44 +54,29 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="/about"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm"
-                >
+                <Link to="/about" className="footer-link">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/shop"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm"
-                >
+                <Link to="/shop" className="footer-link">
                   Shop
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/contact"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm"
-                >
+                <Link to="/contact" className="footer-link">
                   Contact
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/blog"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm"
-                >
+                <Link to="/blog" className="footer-link">
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/faq"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm"
-                >
+                <Link to="/faq" className="footer-link">
                   FAQ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -102,44 +88,32 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="/shop?category=Electronics"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm"
-                >
+                <Link to="/shop?category=Electronics" className="footer-link">
                   Electronics
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/shop?category=Fashion"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm"
-                >
+                <Link to="/shop?category=Fashion" className="footer-link">
                   Fashion
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/shop?category=Home & Garden"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm"
+                <Link
+                  to="/shop?category=Home%20%26%20Garden"
+                  className="footer-link"
                 >
                   Home & Garden
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/shop?category=Sports"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm"
-                >
+                <Link to="/shop?category=Sports" className="footer-link">
                   Sports
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/shop?category=Beauty"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm"
-                >
+                <Link to="/shop?category=Beauty" className="footer-link">
                   Beauty
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -169,7 +143,7 @@ const Footer = () => {
                   <input
                     onChange={(e) => setEmailInfo(e.target.value)}
                     value={emailInfo}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200 text-sm"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all text-sm"
                     type="email"
                     placeholder="Enter your email"
                   />
@@ -181,7 +155,7 @@ const Footer = () => {
                 </div>
                 <Button
                   onClick={handleSubscription}
-                  className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-lg transition-colors duration-200"
+                  className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-lg"
                 >
                   Subscribe
                 </Button>
@@ -190,15 +164,13 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Divider */}
+        {/* Bottom */}
         <div className="border-t border-gray-100 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            {/* Copyright */}
             <p className="text-gray-500 text-sm">
               © 2025 CloudCart. All rights reserved.
             </p>
 
-            {/* Payment Methods */}
             <div className="flex items-center gap-4">
               <span className="text-gray-500 text-sm">We accept:</span>
               <img
@@ -208,17 +180,9 @@ const Footer = () => {
               />
             </div>
 
-            {/* Legal Links */}
             <div className="flex gap-6">
-              {["Privacy Policy", "Terms of Service"].map((link) => (
-                <a
-                  key={link}
-                  href="#"
-                  className="text-gray-500 hover:text-gray-900 text-sm transition-colors duration-200"
-                >
-                  {link}
-                </a>
-              ))}
+              <span className="text-gray-500 text-sm">Privacy Policy</span>
+              <span className="text-gray-500 text-sm">Terms of Service</span>
             </div>
           </div>
         </div>
