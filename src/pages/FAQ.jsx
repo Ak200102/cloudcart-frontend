@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import Container from "../components/Container";
 import Breadcrumbs from "../components/Breadcrumbs";
+import { Link } from "react-router-dom";
 
 const FAQ = () => {
   const [openItems, setOpenItems] = useState({});
@@ -196,18 +197,18 @@ const FAQ = () => {
               or concerns.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a
+              <Link
                 href="/contact"
                 className="bg-gray-900 text-white px-8 py-3 rounded-md hover:bg-gray-800 transition-colors duration-200"
               >
                 Contact Us
-              </a>
-              <a
-                href="mailto:support@CloudCart.com"
+              </Link>
+              <Link
+                to="mailto:support@CloudCart.com"
                 className="border border-gray-300 text-gray-700 px-8 py-3 rounded-md hover:bg-gray-50 transition-colors duration-200"
               >
                 Email Support
-              </a>
+              </Link>
             </div>
           </div>
         </div>
