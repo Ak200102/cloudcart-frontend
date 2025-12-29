@@ -21,7 +21,7 @@ const contactCards = [
   {
     icon: <MdPhone />,
     title: "Call Us",
-    value: "+91 98765 43210",
+    value: "+91 7718510398",
   },
   {
     icon: <MdEmail />,
