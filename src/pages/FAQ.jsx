@@ -95,7 +95,7 @@ const FAQ = () => {
         {
           question: "How can I contact customer service?",
           answer:
-            "You can reach our customer service team via email at support@orebi.com, phone at 1-800-OREBI-SHOP, or through our live chat feature. We're available Monday-Friday 9AM-6PM EST.",
+            "You can reach our customer service team via email at support@CloudCart.com, phone at 1-800-CloudCart-SHOP, or through our live chat feature. We're available Monday-Friday 9AM-6PM EST.",
         },
         {
           question: "What if I receive a damaged item?",
@@ -128,7 +128,7 @@ const FAQ = () => {
               Frequently Asked Questions
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Find answers to common questions about shopping with Orebi. Cannot
+              Find answers to common questions about shopping with CloudCart. Cannot
               find what you&apos;re looking for? Contact our customer service
               team.
             </p>
@@ -203,7 +203,7 @@ const FAQ = () => {
                 Contact Us
               </a>
               <a
-                href="mailto:support@orebi.com"
+                href="mailto:support@CloudCart.com"
                 className="border border-gray-300 text-gray-700 px-8 py-3 rounded-md hover:bg-gray-50 transition-colors duration-200"
               >
                 Email Support
