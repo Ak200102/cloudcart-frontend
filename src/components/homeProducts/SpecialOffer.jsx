@@ -36,7 +36,7 @@ const SpecialOffers = () => {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 640,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -106,7 +106,7 @@ const SpecialOffers = () => {
         // Use slider when more than 3 products
         <Slider {...settings}>
           {products?.map((item) => (
-            <div key={item?._id} className="px-2">
+            <div key={item?._id} className="px-1 sm:px-2">
               <ProductCard item={item} />
             </div>
           ))}
