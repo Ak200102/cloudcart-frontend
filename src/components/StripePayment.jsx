@@ -197,7 +197,7 @@ const CheckoutForm = ({ orderId, amount, onSuccess, onCancel }) => {
           ) : (
             <>
               <FaCreditCard className="w-4 h-4" />
-              Pay ${amount.toFixed(2)}
+              Pay ₹{amount.toFixed(2)}
             </>
           )}
         </button>

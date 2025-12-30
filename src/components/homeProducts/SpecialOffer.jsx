@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import Slider from "react-slick";
-import NextArrow from "../NextArrow";
-import PreviousArrow from "../PreviousArrow";
+
+import NextArrow from "../../components/NextArrow";
+import PreviousArrow from "../../components/PreviousArrow";
 import Title from "../ui/title";
-import ProductCard from "../ProductCard";
+import ProductCard from "../../components/ProductCard.jsx";
 import { getData } from "../../helpers";
 import { serverUrl } from "../../../config";
+import SlickSlider from "react-slick";
+const Slider = SlickSlider.default || SlickSlider;
+
 
 const SpecialOffers = () => {
   const settings = {
