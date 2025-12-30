@@ -297,7 +297,7 @@ const Cart = () => {
                                         (item?.price || 0) +
                                         ((item?.discountedPercentage || 0) *
                                           (item?.price || 0)) /
-                                          100
+                                        100
                                       }
                                     />
                                   </div>
@@ -309,13 +309,13 @@ const Cart = () => {
                         {/* Mobile Controls */}
                         <div className="mt-4 flex items-center justify-between">
                           {/* Quantity Controls */}
-                          <div className="flex items-center border border-gray-300 rounded-lg">
+                          <div className="flex items-center border border-gray-300 rounded-md">
                             <button
                               onClick={() =>
                                 handleQuantityChange(item._id, "decrease")
                               }
                               disabled={(item?.quantity || 1) <= 1}
-                              className="p-2 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-l-lg"
+                              className="p-3 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                             >
                               <FaMinus className="w-3 h-3" />
                             </button>
@@ -360,22 +360,34 @@ const Cart = () => {
                       </div>
 
                       {/* Desktop Layout */}
-                      <div className="hidden lg:grid lg:grid-cols-10 gap-4 items-center">
+                      <div className="relative hidden lg:grid lg:grid-cols-11 gap-6 items-center">
                         {/* Product Info */}
                         <div className="lg:col-span-5">
                           <div className="flex items-start space-x-4">
-                            <Link
-                              to={`/product/${item._id}`}
-                              className="flex-shrink-0 group"
-                            >
-                              <div className="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
-                                <img
-                                  src={item?.images?.[0] || item?.image}
-                                  alt={item?.name}
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-                                />
-                              </div>
-                            </Link>
+                            <div className="flex flex-col items-start">
+                              {/* Product Image */}
+                              <Link
+                                to={`/product/${item._id}`}
+                                className="group"
+                              >
+                                <div className="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
+                                  <img
+                                    src={item?.images?.[0] || item?.image}
+                                    alt={item?.name}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                                  />
+                                </div>
+                              </Link>
+
+                              {/* Delete button under image */}
+                              <button
+                                onClick={() => handleRemoveItem(item._id, item.name)}
+                                className="mt-2 p-1 text-red-600 hover:text-red-800 hover:bg-red-50 rounded"
+                                title="Remove item"
+                              >
+                                <FaTrash className="w-4 h-4" />
+                              </button>
+                            </div>
                             <div className="flex-1 min-w-0">
                               <Link
                                 to={`/product/${item._id}`}
@@ -414,7 +426,7 @@ const Cart = () => {
                                         (item?.price || 0) +
                                         ((item?.discountedPercentage || 0) *
                                           (item?.price || 0)) /
-                                          100
+                                        100
                                       }
                                     />
                                   </div>
@@ -424,9 +436,9 @@ const Cart = () => {
                         </div>
 
                         {/* Quantity Controls */}
-                        <div className="lg:col-span-2">
+                        <div className="lg:col-span-2 ">
                           <div className="flex lg:justify-center">
-                            <div className="flex items-center border border-gray-300 rounded-md">
+                            <div className="flex items-center border border-gray-300 rounded-md  ">
                               <button
                                 onClick={() =>
                                   handleQuantityChange(item._id, "decrease")
@@ -452,27 +464,12 @@ const Cart = () => {
                         </div>
 
                         {/* Subtotal */}
-                        <div className="lg:col-span-1">
-                          <div className="flex lg:justify-center items-center">
-                            <div className="lg:text-center">
-                              <div className="text-lg font-semibold text-gray-900">
-                                <PriceFormat
-                                  amount={
-                                    (item?.price || 0) * (item?.quantity || 1)
-                                  }
-                                />
-                              </div>
-                            </div>
-                            {/* Remove button for desktop */}
-                            <button
-                              onClick={() =>
-                                handleRemoveItem(item._id, item.name)
-                              }
-                              className="hidden lg:block ml-2 p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-md transition-colors"
-                            >
-                              <FaTrash className="w-4 h-4" />
-                            </button>
-                          </div>
+                        <div className="lg:col-span-2 flex justify-center whitespace-nowrap">
+                          <span className="text-lg font-semibold text-gray-900">
+                            <PriceFormat
+                              amount={(item?.price || 0) * (item?.quantity || 1)}
+                            />
+                          </span>
                         </div>
                       </div>
                     </div>
