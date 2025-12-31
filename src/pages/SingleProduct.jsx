@@ -5,10 +5,16 @@ import { MdStar, MdFavoriteBorder, MdShare } from "react-icons/md";
 import { motion } from "framer-motion";
 import { getData } from "../helpers/index";
 import { serverUrl } from "../../config";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import {addToCart} from "../redux/cloudCartSlice"
+
+
 
 const SingleProduct = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [productInfo, setProductInfo] = useState([]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [activeTab, setActiveTab] = useState("description");
@@ -55,11 +61,11 @@ const SingleProduct = () => {
     productInfo?.images && productInfo.images.length > 0
       ? productInfo.images
       : [
-          productInfo?.image,
-          productInfo?.image,
-          productInfo?.image,
-          productInfo?.image,
-        ].filter((img) => img); // Filter out undefined images
+        productInfo?.image,
+        productInfo?.image,
+        productInfo?.image,
+        productInfo?.image,
+      ].filter((img) => img); // Filter out undefined images
 
   const handleQuantityChange = (type) => {
     if (type === "increment") {
@@ -68,6 +74,18 @@ const SingleProduct = () => {
       setQuantity((prev) => prev - 1);
     }
   };
+  const handleAddToCart = () => {
+  if (!productInfo?._id) return;
+
+  dispatch(
+    addToCart({
+      ...productInfo,
+      quantity,
+    })
+  );
+
+  toast.success(`${productInfo.name?.substring(0, 15)} added to cart`);
+};
 
   return (
     <div className="bg-white min-h-screen">
@@ -100,11 +118,10 @@ const SingleProduct = () => {
               <img
                 src={productImages[selectedImage] || "/placeholder-image.jpg"}
                 alt={productInfo?.name}
-                className={`w-full h-full object-cover transition-all duration-500 ${
-                  isImageZoomed
+                className={`w-full h-full object-cover transition-all duration-500 ${isImageZoomed
                     ? "scale-150 cursor-zoom-out"
                     : "hover:scale-105 group-hover:scale-105"
-                }`}
+                  }`}
                 onError={(e) => {
                   e.target.src = "/placeholder-image.jpg";
                 }}
@@ -124,11 +141,10 @@ const SingleProduct = () => {
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`aspect-square overflow-hidden bg-gray-50 rounded-lg border-2 transition-all duration-200 ${
-                    selectedImage === index
+                  className={`aspect-square overflow-hidden bg-gray-50 rounded-lg border-2 transition-all duration-200 ${selectedImage === index
                       ? "border-black"
                       : "border-transparent hover:border-gray-300"
-                  }`}
+                    }`}
                 >
                   <img
                     src={image || "/placeholder-image.jpg"}
@@ -178,11 +194,10 @@ const SingleProduct = () => {
                 {Array.from({ length: 5 }).map((_, index) => (
                   <MdStar
                     key={index}
-                    className={`w-5 h-5 ${
-                      index < Math.floor(productInfo?.ratings || 0)
+                    className={`w-5 h-5 ${index < Math.floor(productInfo?.ratings || 0)
                         ? "text-yellow-400"
                         : "text-gray-300"
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
@@ -222,7 +237,7 @@ const SingleProduct = () => {
                 </div>
               </div>
 
-              <button className="w-full bg-black text-white py-4 px-8 rounded-md hover:bg-gray-800 transition-all duration-300 font-medium uppercase tracking-wider transform hover:scale-[1.02] active:scale-[0.98]">
+              <button onClick={handleAddToCart} className="w-full bg-black text-white py-4 px-8 rounded-md hover:bg-gray-800 transition-all duration-300 font-medium uppercase tracking-wider transform hover:scale-[1.02] active:scale-[0.98]">
                 Add to Cart
               </button>
             </div>
@@ -276,11 +291,10 @@ const SingleProduct = () => {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`pb-4 text-sm font-medium uppercase tracking-wider transition-colors relative ${
-                  activeTab === tab
+                className={`pb-4 text-sm font-medium uppercase tracking-wider transition-colors relative ${activeTab === tab
                     ? "text-black border-b-2 border-black"
                     : "text-gray-500 hover:text-gray-700"
-                }`}
+                  }`}
               >
                 {tab === "reviews"
                   ? `Reviews (${productInfo?.reviews?.length || 0})`
@@ -326,11 +340,10 @@ const SingleProduct = () => {
                                   (_, starIndex) => (
                                     <MdStar
                                       key={starIndex}
-                                      className={`w-4 h-4 ${
-                                        starIndex < review.rating
+                                      className={`w-4 h-4 ${starIndex < review.rating
                                           ? "text-yellow-400"
                                           : "text-gray-300"
-                                      }`}
+                                        }`}
                                     />
                                   )
                                 )}
@@ -411,11 +424,10 @@ const SingleProduct = () => {
                       {Array.from({ length: 5 }).map((_, starIndex) => (
                         <MdStar
                           key={starIndex}
-                          className={`w-4 h-4 ${
-                            starIndex < Math.floor(product.ratings || 4)
+                          className={`w-4 h-4 ${starIndex < Math.floor(product.ratings || 4)
                               ? "text-yellow-400"
                               : "text-gray-300"
-                          }`}
+                            }`}
                         />
                       ))}
                     </div>
