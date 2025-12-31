@@ -7,7 +7,8 @@ import { getData } from "../helpers/index";
 import { serverUrl } from "../../config";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-import {addToCart} from "../redux/cloudCartSlice"
+import {addToCart} from "../redux/cloudCartSlice";
+import { useParams } from "react-router-dom";
 
 
 
@@ -15,6 +16,7 @@ const SingleProduct = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { id } = useParams();
   const [productInfo, setProductInfo] = useState([]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [activeTab, setActiveTab] = useState("description");
@@ -23,9 +25,38 @@ const SingleProduct = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [loadingRelated, setLoadingRelated] = useState(false);
 
-  useEffect(() => {
-    setProductInfo(location.state.item);
-  }, [location, productInfo]);
+ useEffect(() => {
+  const fetchProduct = async () => {
+    try {
+      //  If navigated from Shop / Related Products
+      if (location.state?.item) {
+        setProductInfo(location.state.item);
+        return;
+      }
+
+      // If navigated from Cart or page refresh
+      if (id) {
+        const response = await fetch(
+          `${serverUrl}/api/product/single?id=${id}`
+        );
+        const data = await response.json();
+
+        if (data?.success && data?.product) {
+          setProductInfo(data.product);
+        } else {
+          toast.error("Product not found");
+          navigate("/shop");
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to load product");
+      navigate("/shop");
+    }
+  };
+
+  fetchProduct();
+}, [id, location.state, navigate]);
 
   // Fetch related products based on category
   useEffect(() => {

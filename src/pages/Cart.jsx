@@ -249,6 +249,7 @@ const Cart = () => {
                           {/* Product Image - Clickable */}
                           <Link
                             to={`/product/${item._id}`}
+                            state={{ item }}
                             className="flex-shrink-0 group"
                           >
                             <div className="w-24 h-24 bg-gray-100 rounded-lg overflow-hidden">
@@ -264,6 +265,7 @@ const Cart = () => {
                           <div className="flex-1 min-w-0">
                             <Link
                               to={`/product/${item._id}`}
+                              state={{ item }}
                               className="block hover:text-gray-700"
                             >
                               <h3 className="text-base font-semibold text-gray-900 mb-1 line-clamp-2">
@@ -368,6 +370,7 @@ const Cart = () => {
                               {/* Product Image */}
                               <Link
                                 to={`/product/${item._id}`}
+                                state={{ item }}
                                 className="group"
                               >
                                 <div className="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
@@ -391,6 +394,7 @@ const Cart = () => {
                             <div className="flex-1 min-w-0">
                               <Link
                                 to={`/product/${item._id}`}
+                                state={{ item }}
                                 className="block hover:text-gray-700"
                               >
                                 <h3 className="text-lg font-medium text-gray-900 mb-1">
