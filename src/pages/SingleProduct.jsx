@@ -469,7 +469,7 @@ const SingleProduct = () => {
                   <div className="flex items-center gap-2 mb-3">
                     {product.discountedPercentage > 0 && (
                       <span className="text-sm text-gray-400 line-through">
-                        $
+                        ₹
                         {(
                           product.price /
                           (1 - product.discountedPercentage / 100)
@@ -477,7 +477,7 @@ const SingleProduct = () => {
                       </span>
                     )}
                     <span className="text-lg font-light text-gray-900">
-                      ${product.price}
+                      ₹{product.price}
                     </span>
                     {product.discountedPercentage > 0 && (
                       <span className="bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs font-medium">
