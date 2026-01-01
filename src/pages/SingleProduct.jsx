@@ -7,7 +7,7 @@ import { getData } from "../helpers/index";
 import { serverUrl } from "../../config";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-import {addToCart} from "../redux/cloudCartSlice";
+import { addToCart } from "../redux/cloudCartSlice";
 import { useParams } from "react-router-dom";
 
 
@@ -25,38 +25,38 @@ const SingleProduct = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [loadingRelated, setLoadingRelated] = useState(false);
 
- useEffect(() => {
-  const fetchProduct = async () => {
-    try {
-      //  If navigated from Shop / Related Products
-      if (location.state?.item) {
-        setProductInfo(location.state.item);
-        return;
-      }
-
-      // If navigated from Cart or page refresh
-      if (id) {
-        const response = await fetch(
-          `${serverUrl}/api/product/single?id=${id}`
-        );
-        const data = await response.json();
-
-        if (data?.success && data?.product) {
-          setProductInfo(data.product);
-        } else {
-          toast.error("Product not found");
-          navigate("/shop");
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        //  If navigated from Shop / Related Products
+        if (location.state?.item) {
+          setProductInfo(location.state.item);
+          return;
         }
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to load product");
-      navigate("/shop");
-    }
-  };
 
-  fetchProduct();
-}, [id, location.state, navigate]);
+        // If navigated from Cart or page refresh
+        if (id) {
+          const response = await fetch(
+            `${serverUrl}/api/product/single?id=${id}`
+          );
+          const data = await response.json();
+
+          if (data?.success && data?.product) {
+            setProductInfo(data.product);
+          } else {
+            toast.error("Product not found");
+            navigate("/shop");
+          }
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to load product");
+        navigate("/shop");
+      }
+    };
+
+    fetchProduct();
+  }, [id, location.state, navigate]);
 
   // Fetch related products based on category
   useEffect(() => {
@@ -106,17 +106,17 @@ const SingleProduct = () => {
     }
   };
   const handleAddToCart = () => {
-  if (!productInfo?._id) return;
+    if (!productInfo?._id) return;
 
-  dispatch(
-    addToCart({
-      ...productInfo,
-      quantity,
-    })
-  );
+    dispatch(
+      addToCart({
+        ...productInfo,
+        quantity,
+      })
+    );
 
-  toast.success(`${productInfo.name?.substring(0, 15)} added to cart`);
-};
+    toast.success(`${productInfo.name?.substring(0, 15)} added to cart`);
+  };
 
   return (
     <div className="bg-white min-h-screen">
@@ -150,8 +150,8 @@ const SingleProduct = () => {
                 src={productImages[selectedImage] || "/placeholder-image.jpg"}
                 alt={productInfo?.name}
                 className={`w-full h-full object-cover transition-all duration-500 ${isImageZoomed
-                    ? "scale-150 cursor-zoom-out"
-                    : "hover:scale-105 group-hover:scale-105"
+                  ? "scale-150 cursor-zoom-out"
+                  : "hover:scale-105 group-hover:scale-105"
                   }`}
                 onError={(e) => {
                   e.target.src = "/placeholder-image.jpg";
@@ -173,8 +173,8 @@ const SingleProduct = () => {
                   key={index}
                   onClick={() => setSelectedImage(index)}
                   className={`aspect-square overflow-hidden bg-gray-50 rounded-lg border-2 transition-all duration-200 ${selectedImage === index
-                      ? "border-black"
-                      : "border-transparent hover:border-gray-300"
+                    ? "border-black"
+                    : "border-transparent hover:border-gray-300"
                     }`}
                 >
                   <img
@@ -226,8 +226,8 @@ const SingleProduct = () => {
                   <MdStar
                     key={index}
                     className={`w-5 h-5 ${index < Math.floor(productInfo?.ratings || 0)
-                        ? "text-yellow-400"
-                        : "text-gray-300"
+                      ? "text-yellow-400"
+                      : "text-gray-300"
                       }`}
                   />
                 ))}
@@ -323,8 +323,8 @@ const SingleProduct = () => {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`pb-4 text-sm font-medium uppercase tracking-wider transition-colors relative ${activeTab === tab
-                    ? "text-black border-b-2 border-black"
-                    : "text-gray-500 hover:text-gray-700"
+                  ? "text-black border-b-2 border-black"
+                  : "text-gray-500 hover:text-gray-700"
                   }`}
               >
                 {tab === "reviews"
@@ -372,8 +372,8 @@ const SingleProduct = () => {
                                     <MdStar
                                       key={starIndex}
                                       className={`w-4 h-4 ${starIndex < review.rating
-                                          ? "text-yellow-400"
-                                          : "text-gray-300"
+                                        ? "text-yellow-400"
+                                        : "text-gray-300"
                                         }`}
                                     />
                                   )
@@ -456,8 +456,8 @@ const SingleProduct = () => {
                         <MdStar
                           key={starIndex}
                           className={`w-4 h-4 ${starIndex < Math.floor(product.ratings || 4)
-                              ? "text-yellow-400"
-                              : "text-gray-300"
+                            ? "text-yellow-400"
+                            : "text-gray-300"
                             }`}
                         />
                       ))}
@@ -489,8 +489,15 @@ const SingleProduct = () => {
                     className="w-full mt-3 py-2 border border-gray-300 text-gray-700 hover:border-black hover:text-black hover:bg-black hover:text-white transition-all duration-300 text-sm font-medium uppercase tracking-wider transform hover:scale-[1.02]"
                     onClick={(e) => {
                       e.stopPropagation();
-                      // Handle add to cart functionality here
-                      console.log("Add to cart:", product.name);
+
+                      dispatch(
+                        addToCart({
+                          ...product,
+                          quantity: 1,
+                        })
+                      );
+
+                      toast.success(`${product.name?.substring(0, 15)} added to cart`);
                     }}
                   >
                     Add to Cart
