@@ -410,7 +410,7 @@ const SingleProduct = () => {
           </h2>
 
           {loadingRelated ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[1, 2, 3, 4].map((item) => (
                 <div key={item} className="animate-pulse">
                   <div className="aspect-square bg-gray-200 rounded-lg mb-4"></div>
