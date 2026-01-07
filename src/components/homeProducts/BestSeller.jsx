@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SlickSlider from "react-slick";;
 import NextArrow from "../NextArrow";
 import PreviousArrow from "../PreviousArrow";
-import  Title  from "../ui/title";
+import Title from "../ui/title";
 import ProductCard from "../ProductCard";
 import { getData } from "../../helpers";
 import { serverUrl } from "../../../config";
@@ -19,27 +19,24 @@ const BestSellers = () => {
     prevArrow: <PreviousArrow />,
     responsive: [
       {
-        breakpoint: 1025,
+        breakpoint: 480, // mobile FIRST
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 769, // tablet
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 1025, // small desktop
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 769,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          infinite: true,
         },
       },
     ],
@@ -103,9 +100,9 @@ const BestSellers = () => {
       {/* Conditionally render slider or grid based on product count */}
       {products && products.length > 3 ? (
         // Use slider when more than 3 products
-        <Slider {...settings}>
+        <Slider {...settings} adaptiveHeight>
           {products?.map((item) => (
-            <div key={item?._id} className="px-2">
+            <div key={item?._id} className="px-1 w-full sm:px-2">
               <ProductCard item={item} />
             </div>
           ))}
