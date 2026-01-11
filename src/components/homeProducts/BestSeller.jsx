@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SlickSlider from "react-slick";;
+import SlickSlider from "react-slick";
 import NextArrow from "../NextArrow";
 import PreviousArrow from "../PreviousArrow";
 import Title from "../ui/title";
