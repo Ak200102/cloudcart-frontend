@@ -20,27 +20,17 @@ const NewArrivals = () => {
     prevArrow: <PreviousArrow />,
     responsive: [
       {
-        breakpoint: 1025,
+        breakpoint: 1025, // tablet landscape
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
         },
       },
       {
-        breakpoint: 769,
+        breakpoint: 769, // tablet portrait
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
         },
       },
     ],
@@ -48,7 +38,14 @@ const NewArrivals = () => {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const endpoint = `${serverUrl}/api/product/list?_type=new_arrivals`;
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, [])
 
   useEffect(() => {
     const getProducts = async () => {
@@ -101,23 +98,22 @@ const NewArrivals = () => {
       </div>
 
       {/* Conditionally render slider or grid based on product count */}
-      {products && products.length > 3 ? (
-        // Use slider when more than 3 products
-        <Slider {...settings}>
-          {products?.map((item) => (
-            <div key={item?._id} className="px-2">
-              <ProductCard item={item} />
-            </div>
-          ))}
-        </Slider>
-      ) : (
-        // Use simple grid when 3 or fewer products
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products?.map((item) => (
-            <ProductCard item={item} key={item?._id} />
-          ))}
-        </div>
-      )}
+            {isMobile ? (
+              <div className="grid grid-cols-2 gap-4">
+                {products.map((item) => (
+                  <ProductCard key={item._id} item={item} />
+                ))}
+              </div>
+            ) : (
+              /* TABLET + DESKTOP: SLIDER  */
+              <Slider {...settings}>
+                {products.map((item) => (
+                  <div key={item._id} className="px-2">
+                    <ProductCard item={item} />
+                  </div>
+                ))}
+              </Slider>
+            )}
 
       {/* Show message when no products */}
       {(!products || products.length === 0) && (
