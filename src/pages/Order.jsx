@@ -30,7 +30,6 @@ const Order = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
   const [confirmModal, setConfirmModal] = useState({
     isOpen: false,
     order: null,
@@ -103,14 +102,9 @@ const Order = () => {
     return sortableOrders;
   }, [orders, sortConfig]);
 
-  const openOrderModal = () => {
-    // Show premium modal instead of order details
-    setIsPremiumModalOpen(true);
-  };
+  
 
-  const closeOrderModal = () => {
-    setIsPremiumModalOpen(false);
-  };
+ 
 
   const handleAddOrderToCart = async (order, e) => {
     e.stopPropagation(); // Prevent modal from opening
